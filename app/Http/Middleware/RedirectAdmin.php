@@ -21,7 +21,7 @@ class RedirectAdmin
             return $next($request);
             }
 
-            if ($user->hasRole('user') && $user->is_active == true) {
+            if ($user->hasRole('user') && $user->is_active == false) {
                 Auth::logout();
                 return redirect()->route('login')->with('error', 'Vous n\'avez pas les droits d\'accès à cette page.');
             }

@@ -4,8 +4,14 @@ use App\Livewire\Users;
 use App\Livewire\HomePage;
 use App\Livewire\Admin\AdminManage;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\ProviderController;
 
 Route::get('/', HomePage::class)->name('home');
+
+Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect'])->name('redirect');
+
+Route::get('/auth/{provider}/callback', [ProviderController::class,'callback'])->name('callback');
+
 
 Route::middleware([
     'auth:sanctum',

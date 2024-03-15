@@ -27,19 +27,7 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <!-- Dark mode -->
-                <div class="relative me-3">
-                    <span class="inline-flex rounded-md">
-                        <x-mary-theme-toggle class="btn btn-circle btn-ghost" @theme-changed="console.log($event.detail)"/>
-                    </span>
-                </div>
-
-                @guest
-                <x-mary-button link="{{ route('login') }}" wire:navigate class="text-gray-200 btn-primary btn-sm ms-3 dark:text-gray-900">
-                    <x-mary-icon name="o-user"/> {{ __('login') }} 
-                </x-mary-button>
-                @endguest
-
+                <x-nav-button />
                 <!-- Settings Dropdown -->
                 @auth
                 <div class="relative ms-3">
@@ -103,14 +91,16 @@
             </div>
 
             <!-- Hamburger -->
-           
             <div class="flex items-center -me-2 sm:hidden">
+                <x-nav-button/>
+                @auth
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400">
                     <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
+                @endauth
             </div>
            
         </div>
@@ -127,8 +117,6 @@
                 {{ __('Données') }}
             </x-nav-link>
         </div>
-   
-        
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             
